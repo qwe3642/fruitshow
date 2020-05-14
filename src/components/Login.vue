@@ -28,14 +28,31 @@
       }
     },
     methods:{
-      login(){
-        const { name, pwd, $router} = this
-        this.$router.push({
-          name: "Main",
-          params: {
-            username: this.name
-          }
-        });
+          login(){
+                this.$axios.post('/apis/adminuser/system/xtJs/login',
+                  this.$qs.stringify({
+                    username: this.name,
+                    password: this.pwd
+                  }),
+         {
+                    headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    }
+                }
+          )
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        // const { name, pwd, $router} = this
+        // this.$router.push({
+        //   name: "Main",
+        //   params: {
+        //     username: this.name
+        //   }
+        // });
       }
     }
   }
